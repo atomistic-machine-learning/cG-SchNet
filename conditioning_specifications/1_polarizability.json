@@ -1,0 +1,21 @@
+{
+	"stack": {
+		"in_key": "representation",
+		"layers": {
+			"isotropic_polarizability": {
+				"in_key_property": "_isotropic_polarizability",
+				"n_in": 15,
+				"n_layers": 3,
+				"n_neurons": 64,
+				"n_out": 64,
+				"start": 5,
+				"stop": 16
+			}
+		},
+		"mode": "stack",
+		"n_global_cond_features": 128,
+		"n_layers": 5,
+		"n_neurons": 128,
+		"out_key": "representation"
+	}
+}

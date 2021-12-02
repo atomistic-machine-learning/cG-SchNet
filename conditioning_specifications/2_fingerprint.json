@@ -1,0 +1,18 @@
+{
+	"stack": {
+		"in_key": "representation",
+		"layers": {
+			"fingerprint": {
+				"n_in": 1024,
+				"n_out": 128,
+				"n_layers": 3,
+				"in_key_fingerprint": "_fingerprint"
+			}
+		},
+		"mode": "stack",
+		"n_global_cond_features": 128,
+		"n_layers": 5,
+		"n_neurons": 128,
+		"out_key": "representation"
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"stack": {
+   		"in_key": "representation",
+		"layers": {
+			"gap": {
+			    "in_key_property": "_gap",
+				"n_in": 5,
+				"n_layers": 3,
+			    "n_neurons": 64,
+				"n_out": 64,
+				"start": 2,
+				"stop": 11
+			},
+			"relative_atomic_energy": {
+				"in_key_property": "_relative_atomic_energy",
+				"n_in": 5,
+				"n_layers": 3,
+				"n_neurons": 64,
+				"n_out": 64,
+				"start": -0.2,
+				"stop": 0.2
+			}
+		},
+		"mode": "stack",
+		"n_global_cond_features": 128,
+		"n_layers": 5,
+		"n_neurons": 128,
+		"out_key": "representation"
+	}
+}

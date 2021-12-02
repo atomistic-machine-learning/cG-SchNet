@@ -1,0 +1,43 @@
+{
+	"stack": {
+		"in_key": "representation",
+		"layers": {
+			"composition": {
+				"embedding": {
+					"embedding_dim": 16,
+					"num_embeddings": 20
+				},
+				"in_key_composition": "_composition",
+				"n_layers": 3,
+				"n_neurons": 64,
+				"n_out": 64,
+				"n_types": 5,
+				"skip_h": false,
+				"type_weighting": "relative"
+			},
+			"relative_atomic_energy": {
+				"in_key_property": "_relative_atomic_energy",
+				"n_in": 5,
+				"n_layers": 3,
+				"n_neurons": 64,
+				"n_out": 64,
+				"start": -0.2,
+				"stop": 0.2
+			},
+			"n_atoms": {
+				"in_key_property": "_n_atoms",
+				"n_in": 5,
+				"n_layers": 3,
+				"n_neurons": 64,
+				"n_out": 64,
+				"start": 0,
+				"stop": 35
+			}
+		},
+		"mode": "stack",
+		"n_global_cond_features": 128,
+		"n_layers": 5,
+		"n_neurons": 128,
+		"out_key": "representation"
+	}
+}
