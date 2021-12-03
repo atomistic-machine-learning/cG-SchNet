@@ -1,6 +1,17 @@
 # cG-SchNet
 
 Implementation of cG-SchNet - a conditional generative neural network for 3d molecular structures - accompanying the paper [_"Inverse design of 3d molecular structures with conditional generative neural networks"_](https://arxiv.org/abs/2109.04824) published at ???.
+If you are using cG-SchNet in your research, please cite the corresponding paper:
+
+N.W.A. Gebauer, M. Gastegger, S.S.P. Hessmann, K.-R. Müller, and K.T. Schütt. Inverse design of 3d molecular structures with conditional generative neural networks. arXiv preprint arXiv:2109.04824.
+
+    @article{gebauer2021inverse,
+    title={Inverse design of 3d molecular structures with conditional generative neural networks},
+    author={Gebauer, Niklas WA and Gastegger, Michael and Hessmann, Stefaan SP and M{\"u}ller, Klaus-Robert and Sch{\"u}tt, Kristof T},
+    journal={arXiv preprint arXiv:2109.04824},
+    year={2021}
+    }
+
 
 The code provided in this repository allows to train cG-SchNet on the tasks presented in the paper using the QM9 data set which consists of approximately 130k small molecules with up to nine heavy atoms from fluorine, oxygen, nitrogen, and carbon.
 
