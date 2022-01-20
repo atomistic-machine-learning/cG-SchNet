@@ -589,8 +589,17 @@ def generate(args, train_args, model, device, conditioning_layer_list):
                 continue
             cond_vals = cond_list[1:]
             if cond_name == 'fingerprint':
-                with connect('/home/niklas/uni/phd/____data/qm9gen.db') as conn:
+                if not os.path.isfile('./data/qm9gen.db'):
+                    logging.error(f'could not find database with fingerprints at ./data/qm9gen.db!')
+                    logging.error(f'stopping generation!')
+                    return
+                with connect('./data/qm9gen.db') as conn:
                     if cond_vals[0].isdigit():
+                        if 'fingerprint_format' not in conn.metadata:
+                            logging.error(f'fingerprints not found in database!')
+                            logging.error(f'please re-download data when training a model with fingerprints as condions!')
+                            logging.error(f'stopping generation!')
+                            return
                         fp = np.array(conn.get(int(cond_vals[0])+1).data['fingerprint'],
                                       dtype=conn.metadata['fingerprint_format'])
                     else:
