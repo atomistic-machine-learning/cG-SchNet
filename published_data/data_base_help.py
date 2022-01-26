@@ -40,10 +40,10 @@ if __name__ == '__main__':
         print('\nYou can load and access the molecules and accompanying data by connecting to the data base with ASE, e.g. using the following code snippet:')
         print(f'from ase.db import connect')
         print(f'with connect({path}) as con:\n',
-            f'\trow = con.get(1)  # 1-based indexing\n',
-            f'\tR = row.positions()  # positions of atoms as 3d coordinates\n',
-            f'\tZ = row.numbers()  # list of atomic numbers\n',
+            f'\trow = con.get(1)  # load the first molecule, 1-based indexing\n',
+            f'\tR = row.positions  # positions of atoms as 3d coordinates\n',
+            f'\tZ = row.numbers  # list of atomic numbers\n',
             f'\tdata = row.data  # dictionary of data stored with the molecule\n')
-        print(f'\nYou can visualize the molecules in the data base with ASE from the command line by calling:')
+        print(f'You can visualize the molecules in the data base with ASE from the command line by calling:')
         print(f'ase gui {path}')
 
