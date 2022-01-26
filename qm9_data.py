@@ -4,6 +4,7 @@ import re
 import shutil
 import tarfile
 import tempfile
+from pathlib import Path
 from urllib import request as request
 from urllib.error import HTTPError, URLError
 from base64 import b64encode, b64decode
@@ -270,25 +271,35 @@ class QM9gen(DownloadableAtomsData):
 
     def _preprocess_qm9(self):
         # try to download pre-computed list of invalid molecules
-        logging.info('Downloading pre-computed list of invalid QM9 molecules...')
         raw_path = os.path.join(self.path, 'qm9_invalid.txt')
-        url = 'https://github.com/atomistic-machine-learning/G-SchNet/blob/master/' \
-              'qm9_invalid.txt?raw=true'
-
-        try:
-            request.urlretrieve(url, raw_path)
-            logging.info('Done.')
+        if os.path.exists(raw_path):
+            logging.info(f'Found existing list with indices of molecules in QM9 that are invalid at "{raw_path}".'
+                f' Please manually delete the file and restart training if you want to use the default list instead.')
             invalid_list = np.loadtxt(raw_path)
-        except HTTPError as e:
-            logging.error('HTTP Error:', e.code, url)
-            logging.info('CAUTION: Could not download pre-computed list, will assess '
-                         'validity during pre-processing.')
-            invalid_list = None
-        except URLError as e:
-            logging.error('URL Error:', e.reason, url)
-            logging.info('CAUTION: Could not download pre-computed list, will assess '
-                         'validity during pre-processing.')
-            invalid_list = None
+        else:
+            logging.info('Downloading pre-computed list of invalid QM9 molecules...')
+            # url = 'https://github.com/atomistic-machine-learning/cG-SchNet/blob/main/splits/' \
+            #       'qm9_invalid.txt?raw=true'
+            try:
+                url = Path(__file__).parent.resolve() / 'splits/qm9_invalid.txt'
+                request.urlretrieve(url.as_uri(), raw_path)
+                logging.info('Done.')
+                invalid_list = np.loadtxt(raw_path)
+            except HTTPError as e:
+                logging.error('HTTP Error:', e.code, url)
+                logging.info('CAUTION: Could not download pre-computed list, will assess '
+                             'validity during pre-processing.')
+                invalid_list = None
+            except URLError as e:
+                logging.error('URL Error:', e.reason, url)
+                logging.info('CAUTION: Could not download pre-computed list, will assess '
+                             'validity during pre-processing.')
+                invalid_list = None
+            except ValueError as e:
+                logging.error('Value Error:', e)
+                logging.info('CAUTION: Could not download pre-computed list, will assess '
+                             'validity during pre-processing.')
+                invalid_list = None
         # check validity of molecules and store connectivity matrices and interatomic
         # distances in database as a pre-processing step
         qm9_db = os.path.join(self.path, f'qm9.db')
