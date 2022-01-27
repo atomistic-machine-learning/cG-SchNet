@@ -62,4 +62,4 @@ python ./cG-SchNet/gschnet_cond_script.py generate gschnet ./models/gap_relenerg
 ```
 
 The second model takes two conditions, the gap value and the energy value, as targets.
-For more details on the generation of molecules and subsequent filterning, please refer to the [main readme](https://github.com/atomistic-machine-learning/cG-SchNet#filtering-and-analysis-of-generated-molecules).
+For more details on the generation of molecules and subsequent filtering, please refer to the [main readme](https://github.com/atomistic-machine-learning/cG-SchNet#filtering-and-analysis-of-generated-molecules).
