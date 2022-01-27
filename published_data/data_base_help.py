@@ -37,7 +37,7 @@ if __name__ == '__main__':
         print('\nFor example, here is the data stored with the first three molecules:')
         for i in range(3):
             print(f'{i}: {con.get(i+1).data}')
-        print('\nYou can load and access the molecules and accompanying data by connecting to the data base with ASE, e.g. using the following code snippet:')
+        print('\nYou can load and access the molecules and accompanying data by connecting to the data base with ASE, e.g. using the following python code snippet:')
         print(f'from ase.db import connect')
         print(f'with connect({path}) as con:\n',
             f'\trow = con.get(1)  # load the first molecule, 1-based indexing\n',
