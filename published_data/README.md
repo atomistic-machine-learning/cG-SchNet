@@ -1,4 +1,4 @@
-# Data and pretrained models
+# Generated molecules and pretrained models
 
 Here we provide links to the molecules generated with cG-SchNet in the studies reported in the paper. This allows for reproduction of the shown graphs and statistics, as well as further analysis of the obtained molecules. Furthermore, we provide two pretrained cG-SchNet models that were used in our experiments, which enables sampling of additional molecules.
 
