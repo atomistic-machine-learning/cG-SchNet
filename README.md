@@ -15,6 +15,8 @@ N.W.A. Gebauer, M. Gastegger, S.S.P. Hessmann, K.-R. Müller, and K.T. Schütt. 
 
 The code provided in this repository allows to train cG-SchNet on the tasks presented in the paper using the QM9 data set which consists of approximately 130k small molecules with up to nine heavy atoms from fluorine, oxygen, nitrogen, and carbon.
 
+We also provide links to the molecules generated with cG-SchNet for the paper as well as two pretrained models used therein. For details, please refer to the [published_data folder](https://github.com/atomistic-machine-learning/cG-SchNet/tree/main/published_data).
+
 ### Requirements
 - schnetpack 0.3
 - pytorch >= 1.2
