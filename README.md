@@ -1,7 +1,9 @@
-# cG-SchNet
+# cG-SchNet - A Conditional Generative Neural Network for 3d Molecules
+
+<a href="https://zenodo.org/badge/latestdoi/434276895"><img src="https://zenodo.org/badge/434276895.svg" alt="DOI"></a>
 
 Implementation of cG-SchNet - a conditional generative neural network for 3d molecular structures - accompanying the paper [_"Inverse design of 3d molecular structures with conditional generative neural networks"_](https://arxiv.org/abs/2109.04824).
-If you are using cG-SchNet in your research, please cite the corresponding paper:
+If you are using cG-SchNet in your research, please cite the corresponding publication:
 
 N.W.A. Gebauer, M. Gastegger, S.S.P. Hessmann, K.-R. Müller, and K.T. Schütt. Inverse design of 3d molecular structures with conditional generative neural networks. arXiv preprint arXiv:2109.04824.
 
@@ -70,6 +72,8 @@ Running the script with the following arguments will generate 1000 molecules usi
 
 Remove _--cuda_ from the call if you want to run on the CPU. Add _--show_gen_ to display the molecules with ASE after generation. If you are running into problems due to small VRAM, decrease the size of mini-batches during generation (e.g. _--chunk_size 500_, default is 1000).
 
+Note that the conditions for sampling are provided as a string using the _--conditioning_ argument. You have to provide the name of the property (as given in the field _in\_key\_property_ in the conditioning specification json without trailing underscore) followed by the target value(s). Each property the model was conditioned on, i.e. as listed in one of the layers in the conditioning specification json, has to be provided. Otherwise, the target value will be set to zero which often is an inappropriate value and thus may lead to invalid molecules. The composition of molecules is given as the number of atoms of type h, c, n, o, f (in that particular order). When conditioning on fingerprints, the value can either be an index (which is used to load the fingerprint of the corresponding molecule in the ```./data/qm9gen.db``` data base) or a SMILES string.
+
 ### Filtering and analysis of generated molecules
 After generation, the generated molecules can be filtered for invalid and duplicate structures by running filter_generated.py:
 
@@ -77,6 +81,11 @@ After generation, the generated molecules can be filtered for invalid and duplic
     
 The script will print its progress and the gathered results.
 The script checks the valency constraints (e.g. every hydrogen atom should have exactly one bond), the connectedness (i.e. all atoms in a molecule should be connected to each other via a path over bonds), and removes duplicates*. The remaining valid structures are stored in an sqlite database with ASE (at ./models/cgschnet/generated/generated_molecules.db) along with an .npz-file that records certain statistics (e.g. the number of rings of certain sizes, the number of single, double, and triple bonds, the index of the matching training/test data molecule etc. for each molecule).
+
+In order to match the generated structures to training/test data, the QM9 data set is required. If it hasn't been downloaded before, e.g. because you are using a [pretrained model](https://github.com/atomistic-machine-learning/cG-SchNet/blob/main/published_data/README.md#pretrained-models) for generation, you can initialize the download by starting to train a dummy model for zero epochs and deleting it afterwards as follows:
+
+    python ./cG-SchNet/gschnet_cond_script.py train gschnet ./data/ ./models/_dummy/ --split 1 1 --max_epochs 0
+    rm -r ./models/_dummy
 
 *_Please note that, as described in the paper, we use molecular fingerprints and canonical smiles representations to identify duplicates which means that different spatial conformers corresponding to the same canonical smiles string are tagged as duplicates and removed in the process. Add '--filters valence disconnected' to the call in order to not remove but keep identified duplicates in the created database._
 
