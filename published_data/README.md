@@ -44,7 +44,7 @@ You can visualize the molecules in the data base with ASE from the command line 
 ase gui <path-to-db>
 ```
 
-Note that references to molecules from the QM9 data set always correspond to the indices _after_ removing the invalid molecules listed in [the file of invalid structures](https://github.com/atomistic-machine-learning/cG-SchNet/blob/main/splits/qm9_invalid.txt). These structures were automatically removed if QM9 was downloaded with the data script in this repository (e.g. by starting model training). The resulting data base with corresponding indices can be found in your data directory: ```<data directory path>/qm9gen.db```.
+Note that references to molecules from the QM9 data set always correspond to the indices _after_ removing the invalid molecules listed in [the file of invalid structures](https://github.com/atomistic-machine-learning/cG-SchNet/blob/main/splits/qm9_invalid.txt). These structures were automatically removed if QM9 was downloaded with the data script in this repository (e.g. by starting [model training](https://github.com/atomistic-machine-learning/cG-SchNet#training-a-model)). The resulting data base with corresponding indices can be found in your data directory: ```<data-directory-path>/qm9gen.db```.
 
 ## Pretrained models
 A zip-file containing two pretrained cG-SchNet models can be found under [DOI 10.14279/depositonce-14978](http://dx.doi.org/10.14279/depositonce-14978). The archive consists of two folders, where _comp\_relenergy_ hosts the model that was conditioned on atomic composition and relative atomic energy and used for the study described in Fig. 4 in the paper. The other model was conditioned on the HOMO-LUMO gap and relative atomic energy and used in the study described in Fig. 5 in the paper.
