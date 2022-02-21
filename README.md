@@ -2,16 +2,25 @@
 
 <a href="https://zenodo.org/badge/latestdoi/434276895"><img src="https://zenodo.org/badge/434276895.svg" alt="DOI"></a>
 
-Implementation of cG-SchNet - a conditional generative neural network for 3d molecular structures - accompanying the paper [_"Inverse design of 3d molecular structures with conditional generative neural networks"_](https://arxiv.org/abs/2109.04824).
+Implementation of cG-SchNet - a conditional generative neural network for 3d molecular structures - accompanying the paper [_"Inverse design of 3d molecular structures with conditional generative neural networks"_](https://www.nature.com/articles/s41467-022-28526-y).
 If you are using cG-SchNet in your research, please cite the corresponding publication:
 
-N.W.A. Gebauer, M. Gastegger, S.S.P. Hessmann, K.-R. Müller, and K.T. Schütt. Inverse design of 3d molecular structures with conditional generative neural networks. arXiv preprint arXiv:2109.04824.
+N.W.A. Gebauer, M. Gastegger, S.S.P. Hessmann, K.-R. Müller, and K.T. Schütt.  
+Inverse design of 3d molecular structures with conditional generative neural networks.  
+Nature Communications 13, 973 (2022). https://doi.org/10.1038/s41467-022-28526-y
 
-    @article{gebauer2021inverse,
-    title={Inverse design of 3d molecular structures with conditional generative neural networks},
-    author={Gebauer, Niklas WA and Gastegger, Michael and Hessmann, Stefaan SP and M{\"u}ller, Klaus-Robert and Sch{\"u}tt, Kristof T},
-    journal={arXiv preprint arXiv:2109.04824},
-    year={2021}
+
+    @Article{gebauer2022inverse,
+        author={Gebauer, Niklas W. A. and Gastegger, Michael and Hessmann, Stefaan S. P. and M{\"u}ller, Klaus-Robert and Sch{\"u}tt, Kristof T.},
+        title={Inverse design of 3d molecular structures with conditional generative neural networks},
+        journal={Nature Communications},
+        year={2022},
+        volume={13},
+        number={1},
+        pages={973},
+        issn={2041-1723},
+        doi={10.1038/s41467-022-28526-y},
+        url={https://doi.org/10.1038/s41467-022-28526-y}
     }
 
 
@@ -96,6 +105,6 @@ After filtering, all generated molecules stored in the sqlite database can be di
 
 # How does it work?
 
-cG-SchNet is an autoregressive neural network. It builds 3d molecules by placing one atom after another in 3d space. To this end, the joint distribution of all atoms is factorized into single steps, where the position and type of the new atom depends on the preceding atoms (Figure a). The model also processes conditions, i.e. values of target properties, which enable it to learn a conditional distribution of molecular structures. This distribution allows targeted sampling of molecules that are highly likely to exhibit specified conditions (see e.g. the distribution of the polarizability of molecules generated with cG-SchNet using five different target values in Figure b). The type and absolute position of new atoms are sampled successively, where the probability of the positions is apporximated from predicted pairwise distances to preceding atoms. In order to improve the accuracy of the approximation and steer the generation process, the network uses two auxiliary tokens, the focus and the origin. The new atom always has to be a neighbor of the focus and the origin marks the supposed center of mass of the final structure. A scheme explaining the generation procedure can be seen in Figure c. It uses 2d positional distributions for visualization purposes. For more details, please refer to the publication [_here_](https://arxiv.org/abs/2109.04824).
+cG-SchNet is an autoregressive neural network. It builds 3d molecules by placing one atom after another in 3d space. To this end, the joint distribution of all atoms is factorized into single steps, where the position and type of the new atom depends on the preceding atoms (Figure a). The model also processes conditions, i.e. values of target properties, which enable it to learn a conditional distribution of molecular structures. This distribution allows targeted sampling of molecules that are highly likely to exhibit specified conditions (see e.g. the distribution of the polarizability of molecules generated with cG-SchNet using five different target values in Figure b). The type and absolute position of new atoms are sampled successively, where the probability of the positions is apporximated from predicted pairwise distances to preceding atoms. In order to improve the accuracy of the approximation and steer the generation process, the network uses two auxiliary tokens, the focus and the origin. The new atom always has to be a neighbor of the focus and the origin marks the supposed center of mass of the final structure. A scheme explaining the generation procedure can be seen in Figure c. It uses 2d positional distributions for visualization purposes. For more details, please refer to the publication [_here_](https://www.nature.com/articles/s41467-022-28526-y).
 
 ![generated molecules](./images/concept_results_scheme.png)
