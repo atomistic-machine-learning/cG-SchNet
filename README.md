@@ -1,3 +1,5 @@
+⚠️ **_Disclaimer: This repository is deprecated and only meant for reproduction of the published results of cG-SchNet on QM9. If you want to use custom data sets or build on top of our model, please refer to the [up-to-date implementation](https://github.com/atomistic-machine-learning/schnetpack-gschnet)._**
+
 # cG-SchNet - A Conditional Generative Neural Network for 3d Molecules
 
 <a href="https://zenodo.org/badge/latestdoi/434276895"><img src="https://zenodo.org/badge/434276895.svg" alt="DOI"></a>
