@@ -41,13 +41,12 @@ We also provide links to the molecules generated with cG-SchNet for the paper as
 In the following, we describe the setup using Anaconda.
 
 The following commands will create a new conda environment called _"cgschnet"_ and install all dependencies (tested on Ubuntu 18.04 and 20.04):
-
-    conda create -n cgschnet python=3.7 ase=3.19.0 openbabel=2.4.1 rdkit=2019.09.2.0 -c openbabel -c defaults -c conda-forge
-    conda activate cgschnet
-    pip install torch==1.3.1 schnetpack==0.3
     
-If you do not want to utilize a GPU for training/generation, install pytorch with `pip install torch==1.3.1+cpu -f https://download.pytorch.org/whl/torch_stable.html` instead. However, we strongly recommend to use a GPU if available.
-
+    conda create -n cgschnet python=3.7 pytorch=1.5.1 torchvision cudatoolkit=10.2 ase=3.19.0 openbabel=2.4.1 rdkit=2019.09.2.0 -c pytorch -c openbabel -c defaults -c conda-forge
+    conda activate cgschnet
+    pip install 'schnetpack==0.3'
+    
+Replace _"cudatoolkit=10.2"_ with _"cpuonly"_ if you do not want to utilize a GPU for training/generation. However, we strongly recommend to use a GPU if available.
 
 To observe the training progress, install tensorboard:
 
